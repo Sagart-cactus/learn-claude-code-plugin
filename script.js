@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   Claude Code Plugins — interactions
+   Claude Code Plugins · interactions
    Scroll reveals · reading progress · active section · mobile menu
    ═══════════════════════════════════════════════════════════════ */
 (() => {
