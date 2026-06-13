@@ -118,6 +118,22 @@
         </div>
       </div>
 
+      <figure class="scene" data-reveal>
+        <span class="scene__tag">animated · one plugin, many capabilities</span>
+        <div class="scene__stage sc1">
+          <div class="sc1__core"><span>Claude<br>Code</span></div>
+          <div class="sc1__nodes">
+            <span style="--i:0">skills</span>
+            <span style="--i:1">agents</span>
+            <span style="--i:2">hooks</span>
+            <span style="--i:3">mcp</span>
+            <span style="--i:4">lsp</span>
+            <span style="--i:5">monitors</span>
+          </div>
+        </div>
+        <figcaption>Install a plugin and Claude Code lights up with new powers — each pulsing node is a component the plugin can carry. <b>One bundle, six kinds of capability.</b></figcaption>
+      </figure>
+
       <!-- Mental model -->
       <div class="mentalmodel" data-reveal>
         <div class="mentalmodel__side mentalmodel__side--os">
@@ -203,6 +219,24 @@
           <p class="chapter__sub">Every plugin is a directory. Its power comes from what you put inside it. Nine components — each with a home.</p>
         </div>
       </div>
+
+      <figure class="scene" data-reveal>
+        <span class="scene__tag">animated · nine parts, one directory</span>
+        <div class="scene__stage sc2">
+          <div class="sc2__grid">
+            <span style="--i:0">plugin.json</span>
+            <span style="--i:1">skills</span>
+            <span style="--i:2">agents</span>
+            <span style="--i:3">hooks</span>
+            <span style="--i:4">.mcp</span>
+            <span style="--i:5">.lsp</span>
+            <span style="--i:6">monitors</span>
+            <span style="--i:7">settings</span>
+            <span style="--i:8">bin</span>
+          </div>
+        </div>
+        <figcaption>A power-on sweep shows each block taking its place at the <b>plugin root</b> — only <code>plugin.json</code> lives under <code>.claude-plugin/</code>.</figcaption>
+      </figure>
 
       <div class="blocks">
         <article class="block" data-reveal style="--d:0">
@@ -292,6 +326,23 @@
         </div>
       </div>
 
+      <figure class="scene" data-reveal>
+        <span class="scene__tag">animated · activation at load</span>
+        <div class="scene__stage sc3">
+          <i class="sc3__loader"></i>
+          <div class="sc3__track">
+            <span style="--i:0">manifest</span>
+            <span style="--i:1">skills</span>
+            <span style="--i:2">agents</span>
+            <span style="--i:3">hooks</span>
+            <span style="--i:4">mcp</span>
+            <span style="--i:5">lsp</span>
+            <span style="--i:6">monitors</span>
+          </div>
+        </div>
+        <figcaption>A scanning loader registers each subsystem in order — <b>all of it before Claude’s first response.</b></figcaption>
+      </figure>
+
       <!-- Activation sequence -->
       <h3 class="block-title" data-reveal>Loading &amp; activation — all before Claude’s first response</h3>
       <ol class="sequence">
@@ -371,6 +422,23 @@
         </div>
       </div>
 
+      <figure class="scene" data-reveal>
+        <span class="scene__tag">animated · the first fork in the road</span>
+        <div class="scene__stage sc4">
+          <svg class="sc4__wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <line x1="50" y1="20" x2="50" y2="45"></line>
+            <line x1="50" y1="51" x2="78" y2="79"></line>
+            <line x1="50" y1="51" x2="22" y2="79"></line>
+          </svg>
+          <div class="sc4__start">new capability</div>
+          <div class="sc4__q">share it?</div>
+          <div class="sc4__opt sc4__opt--no">standalone<small>.claude/</small></div>
+          <div class="sc4__opt sc4__opt--yes">plugin<small>.claude-plugin/</small></div>
+          <i class="sc4__token"></i>
+        </div>
+        <figcaption>Will more than one person use it across projects? <b>Yes → build a plugin. No → start standalone</b> and convert later.</figcaption>
+      </figure>
+
       <!-- Decision matrix -->
       <div class="decide" data-reveal>
         <h3>Plugin, or standalone config?</h3>
@@ -405,6 +473,25 @@
         </div>
       </div>
 
+      <figure class="scene" data-reveal>
+        <span class="scene__tag">animated · one update, everyone gets it</span>
+        <div class="scene__stage sc5">
+          <span class="sc5__ring"></span>
+          <span class="sc5__ring"></span>
+          <span class="sc5__ring"></span>
+          <div class="sc5__hub">plugin<small>v1.1</small></div>
+          <div class="sc5__devs">
+            <span style="--i:0"></span>
+            <span style="--i:1"></span>
+            <span style="--i:2"></span>
+            <span style="--i:3"></span>
+            <span style="--i:4"></span>
+            <span style="--i:5"></span>
+          </div>
+        </div>
+        <figcaption>Bump the plugin once and the change ripples to every engineer’s Claude Code — <b>standards and tooling, propagated org-wide.</b></figcaption>
+      </figure>
+
       <div class="why">
         <article data-reveal style="--d:0"><b>01</b><h4>Encode institutional knowledge</h4><p>“The way we do things” becomes permanently available and automatically applied — not buried in a wiki Claude can’t read.</p></article>
         <article data-reveal style="--d:1"><b>02</b><h4>Enforce standards consistently</h4><p>A PostToolUse hook running your linter means style-violating code never gets committed. No human review step for mechanical checks.</p></article>
@@ -425,6 +512,31 @@
           <p class="chapter__sub">Claude Code is an orchestrator. Plugins extend what it knows and what it can do.</p>
         </div>
       </div>
+
+      <figure class="scene" data-reveal>
+        <span class="scene__tag">animated · the orchestrator routes work</span>
+        <div class="scene__stage sc6">
+          <svg class="sc6__svg" viewBox="0 0 440 250" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <path class="wire" d="M156 125 C214 125 222 37 280 37"></path>
+            <path class="wire" d="M156 125 C214 125 222 93 280 93" style="animation-delay:.15s"></path>
+            <path class="wire" d="M156 125 C214 125 222 149 280 149" style="animation-delay:.3s"></path>
+            <path class="wire" d="M156 125 C214 125 222 205 280 205" style="animation-delay:.45s"></path>
+            <rect class="box core" x="36" y="92" width="120" height="66" rx="14"></rect>
+            <text class="core-t" x="96" y="121" text-anchor="middle">Claude</text>
+            <text class="core-t" x="96" y="138" text-anchor="middle">orchestrator</text>
+            <circle class="pulse" cx="156" cy="125" r="4"></circle>
+            <rect class="box" x="280" y="16" width="148" height="42" rx="10"></rect>
+            <text x="300" y="42">Skills</text>
+            <rect class="box" x="280" y="72" width="148" height="42" rx="10"></rect>
+            <text x="300" y="98">MCP tools</text>
+            <rect class="box" x="280" y="128" width="148" height="42" rx="10"></rect>
+            <text x="300" y="154">Agents</text>
+            <rect class="box" x="280" y="184" width="148" height="42" rx="10"></rect>
+            <text x="300" y="210">Hooks</text>
+          </svg>
+        </div>
+        <figcaption>Every request flows through the main thread, which fans out to skills, MCP tools, agents and hooks — <b>then synthesizes the result.</b></figcaption>
+      </figure>
 
       <!-- orchestrator diagram -->
       <div class="orchestrator" data-reveal>
@@ -457,6 +569,20 @@
           <p class="chapter__sub">The section that separates thoughtful authors from those who create real risk. Plugins are powerful — that power needs constraints.</p>
         </div>
       </div>
+
+      <figure class="scene" data-reveal>
+        <span class="scene__tag">animated · validate, then allow</span>
+        <div class="scene__stage sc7">
+          <span class="sc7__in">hook stdin</span>
+          <div class="sc7__gate"><span>validate<br>&amp; allowlist</span></div>
+          <span class="sc7__out">tool runs</span>
+          <i class="sc7__p sc7__p--ok" style="--i:0"></i>
+          <i class="sc7__p sc7__p--ok" style="--i:1"></i>
+          <i class="sc7__p sc7__p--ok" style="--i:2"></i>
+          <i class="sc7__p sc7__p--bad"></i>
+        </div>
+        <figcaption>Treat every hook input as untrusted. Well-formed calls pass the gate; the <b>malicious payload is stopped at the boundary</b> — least privilege, allowlist everything else.</figcaption>
+      </figure>
 
       <!-- trust pyramid + CVEs -->
       <div class="secrow">
@@ -525,6 +651,23 @@ FILE_PATH=$(echo <span class="s">"$STDIN"</span> | jq -r <span class="s">'.tool_
           <p class="chapter__sub">Where plugins deliver the most leverage — turning high-friction, multi-step work into one command.</p>
         </div>
       </div>
+
+      <figure class="scene" data-reveal>
+        <span class="scene__tag">animated · ~20 minutes collapses to ~2</span>
+        <div class="scene__stage sc8">
+          <div class="sc8__row sc8__row--manual">
+            <span class="sc8__label">manual · 8 steps · ~20 min / PR</span>
+            <div class="sc8__bars">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="sc8__row sc8__row--plugin">
+            <span class="sc8__label">plugin · one command · ~2 min</span>
+            <div class="sc8__bars"><span class="sc8__one"></span></div>
+          </div>
+        </div>
+        <figcaption>The manual workflow crawls through eight steps while the plugin finishes in a single pass — <b>same outcome, a tenth of the time.</b></figcaption>
+      </figure>
 
       <!-- before / after -->
       <div class="beforeafter" data-reveal>
@@ -595,6 +738,21 @@ FILE_PATH=$(echo <span class="s">"$STDIN"</span> | jq -r <span class="s">'.tool_
         </div>
       </div>
 
+      <figure class="scene" data-reveal>
+        <span class="scene__tag">animated · idempotent feedback loop</span>
+        <div class="scene__stage sc9">
+          <div class="sc9__orbit">
+            <span class="sc9__node" style="--a:0deg">write test</span>
+            <span class="sc9__node" style="--a:90deg">run</span>
+            <span class="sc9__node" style="--a:180deg">implement</span>
+            <span class="sc9__node" style="--a:270deg">refactor</span>
+            <div class="sc9__spin"><i class="sc9__dot"></i></div>
+            <span class="sc9__center">safe to<br>run twice</span>
+          </div>
+        </div>
+        <figcaption>Skills and hooks should loop cleanly — observable, fail-loud, and <b>idempotent: running the same step twice does nothing bad.</b></figcaption>
+      </figure>
+
       <div class="principles">
         <article data-reveal style="--d:0"><span>9.1</span><h4>Design for observability</h4><p>Write audit logs from hooks. Add a <code>:status</code> skill reporting MCP health and recent hook activity.</p></article>
         <article data-reveal style="--d:1"><span>9.2</span><h4>Fail gracefully &amp; loudly</h4><p>Missing dependency? Surface it on stderr with a fix, don’t silently degrade. Give skills explicit fallbacks.</p></article>
@@ -618,6 +776,20 @@ FILE_PATH=$(echo <span class="s">"$STDIN"</span> | jq -r <span class="s">'.tool_
           <p class="chapter__sub">What the internet doesn’t tell you — the things you actually need to build plugins that work at scale.</p>
         </div>
       </div>
+
+      <figure class="scene" data-reveal>
+        <span class="scene__tag">animated · the description is the router</span>
+        <div class="scene__stage sc10">
+          <div class="sc10__task">“review this PR<br>for security”</div>
+          <div class="sc10__beam"></div>
+          <div class="sc10__skills">
+            <span style="--i:0">format-docs</span>
+            <span style="--i:1" class="match">security-review</span>
+            <span style="--i:2">run-tests</span>
+          </div>
+        </div>
+        <figcaption>Claude scans every skill’s <code>description</code> and routes the task to the one that fits — <b>which is why the description is your most important code.</b></figcaption>
+      </figure>
 
       <div class="beyond">
         <article class="beyond__feature" data-reveal>
