@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The definitive visual guide to Claude Code plugins — from fundamentals to production-grade architecture, security, and workflow design.">
+  <title>Claude Code Plugins · The Definitive Visual Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ───────────────────────── TOP BAR ───────────────────────── -->
+  <header class="topbar" data-topbar>
+    <a class="brand" href="#top" aria-label="Home">
+      <span class="brand__glyph" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </span>
+      <span class="brand__text">
+        <b>claude·plugins</b>
+        <small>the definitive guide</small>
+      </span>
+    </a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="chapters" data-menu-btn>
+      <span>Chapters</span><i aria-hidden="true"></i>
+    </button>
+    <nav class="chapters" id="chapters" aria-label="Chapters" data-menu>
+      <a href="#s1"><em>01</em> What it is</a>
+      <a href="#s2"><em>02</em> Building blocks</a>
+      <a href="#s3"><em>03</em> Lifecycle</a>
+      <a href="#s4"><em>04</em> Before you build</a>
+      <a href="#s5"><em>05</em> Why build</a>
+      <a href="#s6"><em>06</em> Interaction</a>
+      <a href="#s7"><em>07</em> Security</a>
+      <a href="#s8"><em>08</em> Workflows</a>
+      <a href="#s9"><em>09</em> Architecture</a>
+      <a href="#s10"><em>10</em> Going beyond</a>
+      <a href="#ref"><em>＋</em> Quick reference</a>
+    </nav>
+    <span class="scroll-progress" data-progress aria-hidden="true"></span>
+  </header>
+
+  <!-- ───────────────────────── SIDE RAIL ───────────────────────── -->
+  <aside class="rail" aria-hidden="true" data-rail>
+    <a href="#s1" data-rail-dot="s1"><i></i><span>01 · Capability bundle</span></a>
+    <a href="#s2" data-rail-dot="s2"><i></i><span>02 · Building blocks</span></a>
+    <a href="#s3" data-rail-dot="s3"><i></i><span>03 · Lifecycle</span></a>
+    <a href="#s4" data-rail-dot="s4"><i></i><span>04 · Before you build</span></a>
+    <a href="#s5" data-rail-dot="s5"><i></i><span>05 · Why build</span></a>
+    <a href="#s6" data-rail-dot="s6"><i></i><span>06 · Interaction</span></a>
+    <a href="#s7" data-rail-dot="s7"><i></i><span>07 · Security</span></a>
+    <a href="#s8" data-rail-dot="s8"><i></i><span>08 · Workflows</span></a>
+    <a href="#s9" data-rail-dot="s9"><i></i><span>09 · Architecture</span></a>
+    <a href="#s10" data-rail-dot="s10"><i></i><span>10 · Going beyond</span></a>
+  </aside>
+
+  <main id="main">
+
+    <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+    <section class="hero" id="top">
+      <div class="hero__grid" aria-hidden="true"></div>
+      <div class="hero__orbs" aria-hidden="true"><span></span><span></span></div>
+
+      <div class="hero__inner">
+        <p class="kicker" data-reveal>Anthropic · Claude Code · Extension architecture</p>
+        <h1 class="hero__title" data-reveal>
+          Teach Claude Code
+          <span class="hero__title-em">new&nbsp;superpowers.</span>
+        </h1>
+        <p class="hero__lede" data-reveal>
+          A plugin is a self-contained, installable bundle of capabilities — skills, agents,
+          hooks, MCP servers and more — that Claude can load, understand, and act on.
+          This is the field guide, drawn out in full.
+        </p>
+
+        <div class="hero__terminal" data-reveal>
+          <div class="term__bar"><i></i><i></i><i></i><span>claude code</span></div>
+          <pre class="term__body"><code><span class="t-prompt">$</span> <span class="t-cmd">/plugin install</span> <span class="t-arg">@official/code-review</span>
+<span class="t-ok">✓</span> manifest registered · skills mounted · hooks armed
+<span class="t-dim">Claude can now review PRs, audit diffs &amp; enforce standards.</span></code></pre>
+        </div>
+
+        <div class="hero__meta" data-reveal>
+          <span><b>10</b> chapters</span>
+          <span><b>9</b> building blocks</span>
+          <span><b>1</b> mental model</span>
+        </div>
+      </div>
+
+      <!-- floating capability blocks -->
+      <div class="hero__blocks" aria-hidden="true">
+        <span class="fb fb--1">skills</span>
+        <span class="fb fb--2">agents</span>
+        <span class="fb fb--3">hooks</span>
+        <span class="fb fb--4">mcp</span>
+        <span class="fb fb--5">lsp</span>
+        <span class="fb fb--6">monitors</span>
+      </div>
+
+      <a class="hero__scroll" href="#s1" aria-label="Start reading">
+        <span>start reading</span><i></i>
+      </a>
+    </section>
+
+    <!-- ═══════════════════ 1 · WHAT IS A PLUGIN ═══════════════════ -->
+    <section class="chapter" id="s1" data-section="s1">
+      <div class="chapter__head" data-reveal>
+        <span class="chapter__num">01</span>
+        <div>
+          <h2>What is a Claude Code plugin?</h2>
+          <p class="chapter__sub">A reusable “capability bundle” Claude can load, understand, and invoke on your behalf — not just a prompt wrapper.</p>
+        </div>
+      </div>
+
+      <!-- Mental model -->
+      <div class="mentalmodel" data-reveal>
+        <div class="mentalmodel__side mentalmodel__side--os">
+          <span class="mentalmodel__label">the platform</span>
+          <strong>Claude&nbsp;Code</strong>
+          <p>is the operating system</p>
+        </div>
+        <div class="mentalmodel__op" aria-hidden="true">::</div>
+        <div class="mentalmodel__side mentalmodel__side--apps">
+          <span class="mentalmodel__label">the extensions</span>
+          <strong>Plugins</strong>
+          <p>are the applications</p>
+        </div>
+        <p class="mentalmodel__note">They extend what Claude can <em>perceive</em>, <em>decide</em>, and <em>act on</em> — without re-explaining context every session.</p>
+      </div>
+
+      <!-- Six things inside -->
+      <p class="lead-in" data-reveal>A single plugin can compose any of these:</p>
+      <div class="capgrid">
+        <article class="capcard" data-reveal style="--d:0">
+          <span class="capcard__ico" data-ico="skill"></span>
+          <h3>Skills</h3>
+          <p>Reusable instruction sets Claude invokes automatically or on demand.</p>
+        </article>
+        <article class="capcard" data-reveal style="--d:1">
+          <span class="capcard__ico" data-ico="agent"></span>
+          <h3>Agents</h3>
+          <p>Custom sub-agents with their own system prompts and tool access.</p>
+        </article>
+        <article class="capcard" data-reveal style="--d:2">
+          <span class="capcard__ico" data-ico="hook"></span>
+          <h3>Hooks</h3>
+          <p>Event-driven shell scripts that fire on lifecycle events.</p>
+        </article>
+        <article class="capcard" data-reveal style="--d:3">
+          <span class="capcard__ico" data-ico="mcp"></span>
+          <h3>MCP servers</h3>
+          <p>External tool integrations via the Model Context Protocol.</p>
+        </article>
+        <article class="capcard" data-reveal style="--d:4">
+          <span class="capcard__ico" data-ico="lsp"></span>
+          <h3>LSP servers</h3>
+          <p>Real-time code intelligence for specific languages.</p>
+        </article>
+        <article class="capcard" data-reveal style="--d:5">
+          <span class="capcard__ico" data-ico="monitor"></span>
+          <h3>Background monitors</h3>
+          <p>Persistent watchers that stream context to Claude as events arrive.</p>
+        </article>
+      </div>
+
+      <!-- Plugin vs standalone -->
+      <div class="versus" data-reveal>
+        <h3 class="versus__title">Plugin <span>vs.</span> standalone config</h3>
+        <div class="versus__cols">
+          <div class="versus__col">
+            <header><b>Standalone</b><code>.claude/</code></header>
+            <ul>
+              <li>Skill syntax <code>/hello</code></li>
+              <li>Fast to set up</li>
+              <li>Personal workflows, single project, quick experiments</li>
+            </ul>
+          </div>
+          <div class="versus__divider" aria-hidden="true"><span>the key distinction is<br><em>shareability &amp; namespace isolation</em></span></div>
+          <div class="versus__col versus__col--hi">
+            <header><b>Plugin</b><code>.claude-plugin/plugin.json</code></header>
+            <ul>
+              <li>Skill syntax <code>/my-plugin:hello</code></li>
+              <li>Built for scale</li>
+              <li>Team sharing, multi-project reuse, versioned distribution, marketplace</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ 2 · BUILDING BLOCKS ═══════════════════ -->
+    <section class="chapter" id="s2" data-section="s2">
+      <div class="chapter__head" data-reveal>
+        <span class="chapter__num">02</span>
+        <div>
+          <h2>The building blocks</h2>
+          <p class="chapter__sub">Every plugin is a directory. Its power comes from what you put inside it. Nine components — each with a home.</p>
+        </div>
+      </div>
+
+      <div class="blocks">
+        <article class="block" data-reveal style="--d:0">
+          <header><span class="block__n">2.1</span><h3>The manifest</h3><code>.claude-plugin/plugin.json</code></header>
+          <p>The single required file. Declares identity — <b>name</b> (your skill namespace prefix), <b>version</b>, <b>description</b>.</p>
+          <pre class="mini"><code>{
+  <span class="k">"name"</span>: <span class="s">"my-plugin"</span>,
+  <span class="k">"version"</span>: <span class="s">"1.0.0"</span>,
+  <span class="k">"description"</span>: <span class="s">"Automates code review"</span>
+}</code></pre>
+        </article>
+
+        <article class="block" data-reveal style="--d:1">
+          <header><span class="block__n">2.2</span><h3>Skills</h3><code>skills/&lt;name&gt;/SKILL.md</code></header>
+          <p>The lightest-weight primitive: a markdown file with YAML frontmatter giving Claude a reusable instruction set. The <b>description</b> tells Claude <em>when</em> to invoke it.</p>
+        </article>
+
+        <article class="block" data-reveal style="--d:2">
+          <header><span class="block__n">2.3</span><h3>Agents</h3><code>agents/&lt;name&gt;.md</code></header>
+          <p>Specialized Claude instances with their own system prompt and restricted tools. <b>Hooks, mcpServers &amp; permissionMode are deliberately unsupported inside agents</b> — for security.</p>
+        </article>
+
+        <article class="block" data-reveal style="--d:3">
+          <header><span class="block__n">2.4</span><h3>Hooks</h3><code>hooks/hooks.json</code></header>
+          <p>React to lifecycle events by running shell commands automatically — the automation backbone for enforcing policy and running checks.</p>
+        </article>
+
+        <article class="block" data-reveal style="--d:4">
+          <header><span class="block__n">2.5</span><h3>MCP servers</h3><code>.mcp.json</code></header>
+          <p>Tools backed by external APIs or local processes. Bundle them so users get the integration automatically on install.</p>
+        </article>
+
+        <article class="block" data-reveal style="--d:5">
+          <header><span class="block__n">2.6</span><h3>LSP servers</h3><code>.lsp.json</code></header>
+          <p>Real-time code intelligence — completions, diagnostics, go-to-definition — for specific languages.</p>
+        </article>
+
+        <article class="block" data-reveal style="--d:6">
+          <header><span class="block__n">2.7</span><h3>Monitors</h3><code>monitors/monitors.json</code></header>
+          <p>Persistent background processes that stream context to Claude as events arrive. Started automatically when the plugin is active.</p>
+        </article>
+
+        <article class="block" data-reveal style="--d:7">
+          <header><span class="block__n">2.8</span><h3>Default settings</h3><code>settings.json</code></header>
+          <p>Ship default Claude Code settings. Supported keys: <code>agent</code> and <code>subagentStatusLine</code> — activate a named agent as the main thread.</p>
+        </article>
+
+        <article class="block" data-reveal style="--d:8">
+          <header><span class="block__n">2.9</span><h3>Executables</h3><code>bin/</code></header>
+          <p>Added to the Bash tool’s <code>PATH</code> while active — CLI utilities available to Claude with no user PATH manipulation.</p>
+        </article>
+      </div>
+
+      <!-- Directory tree + warning -->
+      <div class="treewrap" data-reveal>
+        <div class="filetree">
+          <div class="filetree__bar"><i></i><i></i><i></i><span>my-plugin/</span></div>
+          <pre><code><span class="dir">.claude-plugin/</span>
+  <span class="file hl">plugin.json</span>          <span class="cmt">← manifest (only file here)</span>
+<span class="dir">skills/</span>
+  <span class="dir">code-review/</span>
+    <span class="file">SKILL.md</span>
+    <span class="file">reference.md</span>
+<span class="dir">agents/</span><span class="file">security-reviewer.md</span>
+<span class="dir">hooks/</span><span class="file">hooks.json</span>
+<span class="file">.mcp.json</span>                  <span class="cmt">← MCP server configs</span>
+<span class="file">.lsp.json</span>                  <span class="cmt">← LSP server configs</span>
+<span class="dir">monitors/</span><span class="file">monitors.json</span>
+<span class="dir">bin/</span>                        <span class="cmt">← executables added to PATH</span>
+<span class="file">settings.json</span>
+<span class="file">README.md</span></code></pre>
+        </div>
+        <aside class="warn">
+          <span class="warn__tag">⚠ common mistake</span>
+          <p>Never put <code>skills/</code>, <code>agents/</code>, or <code>hooks/</code> <em>inside</em> <code>.claude-plugin/</code>. Only <code>plugin.json</code> goes there — all component directories live at the <b>plugin root</b>.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ 3 · LIFECYCLE ═══════════════════ -->
+    <section class="chapter" id="s3" data-section="s3">
+      <div class="chapter__head" data-reveal>
+        <span class="chapter__num">03</span>
+        <div>
+          <h2>How plugins work — end to end</h2>
+          <p class="chapter__sub">From a marketplace install to a hot reload. Understanding the lifecycle helps you build plugins that behave predictably.</p>
+        </div>
+      </div>
+
+      <!-- Activation sequence -->
+      <h3 class="block-title" data-reveal>Loading &amp; activation — all before Claude’s first response</h3>
+      <ol class="sequence">
+        <li data-reveal style="--d:0"><span class="sequence__n">1</span><p>The <b>manifest</b> is read; the plugin’s identity is registered.</p></li>
+        <li data-reveal style="--d:1"><span class="sequence__n">2</span><p><b>Skills</b> are discovered and added to Claude’s command list.</p></li>
+        <li data-reveal style="--d:2"><span class="sequence__n">3</span><p><b>Agents</b> are loaded into the agent registry.</p></li>
+        <li data-reveal style="--d:3"><span class="sequence__n">4</span><p><b>Hooks</b> are registered for lifecycle events.</p></li>
+        <li data-reveal style="--d:4"><span class="sequence__n">5</span><p><b>MCP servers</b> start as child processes.</p></li>
+        <li data-reveal style="--d:5"><span class="sequence__n">6</span><p><b>LSP servers</b> are initialized.</p></li>
+        <li data-reveal style="--d:6"><span class="sequence__n">7</span><p><b>Monitors</b> begin streaming.</p></li>
+      </ol>
+
+      <!-- Two paths -->
+      <h3 class="block-title" data-reveal>Skill invocation — two paths</h3>
+      <div class="twopaths">
+        <article class="path" data-reveal>
+          <span class="path__tag">explicit</span>
+          <h4>You type the command</h4>
+          <code class="path__code">/plugin-name:skill-name [args]</code>
+          <p>Direct, deterministic. You decide.</p>
+        </article>
+        <article class="path path--auto" data-reveal>
+          <span class="path__tag">automatic</span>
+          <h4>Claude reads the description</h4>
+          <p>Claude decides based on task context — which is why a precise, trigger-aware <b>description</b> is the most important part of any skill.</p>
+          <div class="path__compare">
+            <div class="path__weak"><b>weak</b> “Code review helper”</div>
+            <div class="path__strong"><b>strong</b> “Reviews diffs for security &amp; style. Use before merging any branch.”</div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Hook flow -->
+      <h3 class="block-title" data-reveal>The hook execution flow</h3>
+      <div class="hookflow" data-reveal>
+        <div class="hf__node">User request</div>
+        <i class="hf__arrow"></i>
+        <div class="hf__node">Claude picks a tool</div>
+        <i class="hf__arrow"></i>
+        <div class="hf__node hf__node--pre">PreToolUse hooks fire</div>
+        <i class="hf__arrow"></i>
+        <div class="hf__node hf__node--tool">Tool executes</div>
+        <i class="hf__arrow"></i>
+        <div class="hf__node hf__node--post">PostToolUse hooks fire</div>
+        <i class="hf__arrow"></i>
+        <div class="hf__node">Claude continues</div>
+      </div>
+      <div class="hookreturns" data-reveal>
+        <span>Hooks receive JSON on stdin and can:</span>
+        <ul>
+          <li><b class="ec ec--ok">exit 0</b> allow the action</li>
+          <li><b class="ec ec--no">exit ≠ 0</b> block it (Claude sees stderr)</li>
+          <li><b class="ec ec--json">return JSON</b> add context to Claude’s next decision</li>
+        </ul>
+      </div>
+
+      <!-- namespacing + reload -->
+      <div class="twoup" data-reveal>
+        <article class="note-card">
+          <h4>Namespacing</h4>
+          <p>Every plugin skill is prefixed <code>/plugin-name:skill-name</code>, preventing conflicts. The prefix comes from <code>name</code> in the manifest.</p>
+        </article>
+        <article class="note-card">
+          <h4>Hot reloading</h4>
+          <p>Run <code>/reload-plugins</code> to pick up changes without restarting — reloads skills, agents, hooks, MCP &amp; LSP. Monitors restart automatically.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ 4 · BEFORE YOU BUILD ═══════════════════ -->
+    <section class="chapter" id="s4" data-section="s4">
+      <div class="chapter__head" data-reveal>
+        <span class="chapter__num">04</span>
+        <div>
+          <h2>What to consider before building</h2>
+          <p class="chapter__sub">Answer these before writing a single line. They determine whether you’re building the right thing.</p>
+        </div>
+      </div>
+
+      <!-- Decision matrix -->
+      <div class="decide" data-reveal>
+        <h3>Plugin, or standalone config?</h3>
+        <p class="decide__hint">Start standalone. Convert to a plugin when sharing becomes necessary.</p>
+        <ul class="decide__list">
+          <li class="yes"><i></i>Multiple people will use this</li>
+          <li class="yes"><i></i>Works across several projects</li>
+          <li class="yes"><i></i>Needs versioning &amp; controlled rollout</li>
+          <li class="yes"><i></i>Has external dependencies (MCP, LSP)</li>
+          <li class="no"><i></i>Just for you, one project, a quick test</li>
+        </ul>
+      </div>
+
+      <!-- consideration cards -->
+      <div class="consider">
+        <article data-reveal style="--d:0"><span>4.2</span><h4>Core capability</h4><p>Complete the sentence: “With this plugin, Claude can now ____.” Be specific — “developer productivity” is too broad.</p></article>
+        <article data-reveal style="--d:1"><span>4.3</span><h4>Scope &amp; boundaries</h4><p>Which tools? What should it explicitly <em>not</em> do? Persistent state? Network access? Scope creep breaks trust.</p></article>
+        <article data-reveal style="--d:2"><span>4.4</span><h4>Dependency inventory</h4><p>External binaries, API keys, network domains, other plugins. Document them — and fail gracefully when missing.</p></article>
+        <article data-reveal style="--d:3"><span>4.5</span><h4>Namespace conflicts</h4><p>Pick a unique, organization-scoped name. Prefer <code>acme-code-review</code> over <code>code-review</code>.</p></article>
+        <article data-reveal style="--d:4"><span>4.6</span><h4>Version strategy</h4><p>Explicit version = stable, disciplined updates. No version = every commit ships. Pick explicit for anything beyond yourself.</p></article>
+        <article data-reveal style="--d:5"><span>4.7</span><h4>Distribution channel</h4><p>Local dir · private git marketplace · community submission · enterprise marketplace behind your auth.</p></article>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ 5 · WHY BUILD ═══════════════════ -->
+    <section class="chapter" id="s5" data-section="s5">
+      <div class="chapter__head" data-reveal>
+        <span class="chapter__num">05</span>
+        <div>
+          <h2>Why build a plugin?</h2>
+          <p class="chapter__sub">Seven reasons a plugin beats re-explaining yourself every session.</p>
+        </div>
+      </div>
+
+      <div class="why">
+        <article data-reveal style="--d:0"><b>01</b><h4>Encode institutional knowledge</h4><p>“The way we do things” becomes permanently available and automatically applied — not buried in a wiki Claude can’t read.</p></article>
+        <article data-reveal style="--d:1"><b>02</b><h4>Enforce standards consistently</h4><p>A PostToolUse hook running your linter means style-violating code never gets committed. No human review step for mechanical checks.</p></article>
+        <article data-reveal style="--d:2"><b>03</b><h4>Compress repetitive context</h4><p>The background you retype every session — architecture, file layout, conventions — belongs in a skill that primes Claude at the start.</p></article>
+        <article data-reveal style="--d:3"><b>04</b><h4>Create specialized personas</h4><p>A security reviewer that only thinks vulnerabilities; a doc writer that only writes docs. Specialization produces better outputs.</p></article>
+        <article data-reveal style="--d:4"><b>05</b><h4>Integrate your toolchain</h4><p>MCP turns Claude Code into a hub talking to your issue tracker, CI, and observability — no copy-paste from Datadog.</p></article>
+        <article data-reveal style="--d:5"><b>06</b><h4>Scale across your org</h4><p>One install gives every engineer the same baseline. One update propagates everywhere.</p></article>
+        <article data-reveal style="--d:6" class="why--wide"><b>07</b><h4>Monetization &amp; community</h4><p>Solve a general problem elegantly and there’s a real user base waiting on the community marketplace.</p></article>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ 6 · INTERACTION ═══════════════════ -->
+    <section class="chapter" id="s6" data-section="s6">
+      <div class="chapter__head" data-reveal>
+        <span class="chapter__num">06</span>
+        <div>
+          <h2>How Claude Code interacts with plugins</h2>
+          <p class="chapter__sub">Claude Code is an orchestrator. Plugins extend what it knows and what it can do.</p>
+        </div>
+      </div>
+
+      <!-- orchestrator diagram -->
+      <div class="orchestrator" data-reveal>
+        <div class="orch__core">
+          <span>main thread</span>
+          <strong>Claude<br>orchestrator</strong>
+        </div>
+        <div class="orch__branches">
+          <div class="orch__branch"><i class="orch__line"></i><div class="orch__leaf"><b>Skills</b><p>reads descriptions → decides which to invoke</p></div></div>
+          <div class="orch__branch"><i class="orch__line"></i><div class="orch__leaf"><b>MCP tools</b><p>sees available tools → decides which to call</p></div></div>
+          <div class="orch__branch"><i class="orch__line"></i><div class="orch__leaf"><b>Agents</b><p>spawns sub-agents → delegates focused subtasks</p></div></div>
+          <div class="orch__branch"><i class="orch__line"></i><div class="orch__leaf"><b>Hooks</b><p>intercept tool calls → shell scripts run</p></div></div>
+        </div>
+      </div>
+
+      <div class="interplay">
+        <article data-reveal style="--d:0"><h4>Context injection</h4><p>When a skill is invoked, its <code>SKILL.md</code> is injected into Claude’s working context — at the right moment. Put the critical info near the top; load detail only when needed.</p></article>
+        <article data-reveal style="--d:1"><h4>Tool routing</h4><p>MCP tools appear alongside <code>Read</code>, <code>Write</code>, <code>Bash</code>. Claude routes by description — <b>your tool descriptions are as important as your skill descriptions</b>.</p></article>
+        <article data-reveal style="--d:2"><h4>Agent delegation</h4><p>The orchestrator delegates to an agent that runs with its own prompt and restricted tools, then returns findings to be synthesized.</p></article>
+        <article data-reveal style="--d:3"><h4>Monitor feed</h4><p>Monitors pipe stdout to Claude as notifications — ambient awareness of test failures, error logs, and status changes without being asked.</p></article>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ 7 · SECURITY ═══════════════════ -->
+    <section class="chapter chapter--danger" id="s7" data-section="s7">
+      <div class="chapter__head" data-reveal>
+        <span class="chapter__num">07</span>
+        <div>
+          <h2>Security design</h2>
+          <p class="chapter__sub">The section that separates thoughtful authors from those who create real risk. Plugins are powerful — that power needs constraints.</p>
+        </div>
+      </div>
+
+      <!-- trust pyramid + CVEs -->
+      <div class="secrow">
+        <div class="trust" data-reveal>
+          <h3 class="block-title">The trust pyramid problem</h3>
+          <p>Installing a plugin means implicitly trusting <em>every</em> component inside it. Trust is transitive and often opaque.</p>
+          <div class="pyramid">
+            <span class="pyramid__tier" style="--w:30%">monitors · bin</span>
+            <span class="pyramid__tier" style="--w:50%">MCP servers</span>
+            <span class="pyramid__tier" style="--w:70%">hooks</span>
+            <span class="pyramid__tier" style="--w:90%">skills · agents</span>
+            <span class="pyramid__base">a single malicious component can exfiltrate keys or run arbitrary code</span>
+          </div>
+        </div>
+        <div class="cves" data-reveal>
+          <h3 class="block-title">Real CVEs have exploited this</h3>
+          <article class="cve">
+            <span class="cve__id">CVE-2025-59536</span>
+            <p>Remote code execution via malicious hooks planted in a repository’s settings file.</p>
+          </article>
+          <article class="cve">
+            <span class="cve__id">CVE-2026-21852</span>
+            <p>API-key exfiltration by overriding environment variables through a rogue MCP server.</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- least privilege by component -->
+      <h3 class="block-title" data-reveal>Least privilege, component by component</h3>
+      <div class="lp">
+        <article data-reveal style="--d:0"><h4>Skills</h4><p>Request only the tools you need. Reading logs? <code>tools: Read, Glob</code> — nothing more.</p></article>
+        <article data-reveal style="--d:1"><h4>Agents</h4><p>Explicit tool lists. A doc writer needs <code>Read, Write, Glob</code> — not <code>Bash</code>.</p></article>
+        <article data-reveal style="--d:2" class="lp--danger"><h4>Hooks <span>most dangerous</span></h4><p>Always quote variables <code>"$FILE"</code>. Validate &amp; sanitize input. Never pipe user content to <code>sh</code>. Allowlist, don’t blocklist.</p></article>
+        <article data-reveal style="--d:3"><h4>MCP servers</h4><p>Each is a trust boundary. Ship only audited servers. Reference secrets via env. Scope tokens minimally; prefer read-only.</p></article>
+      </div>
+
+      <pre class="codeblock codeblock--danger" data-reveal><div class="codeblock__bar"><i></i><i></i><i></i><span>hook input validation</span></div><code><span class="cmt"># Extract and validate — treat stdin as untrusted</span>
+FILE_PATH=$(echo <span class="s">"$STDIN"</span> | jq -r <span class="s">'.tool_input.file_path // empty'</span>)
+<span class="kw">if</span> [ -z <span class="s">"$FILE_PATH"</span> ]; <span class="kw">then</span> exit 0; <span class="kw">fi</span>
+<span class="cmt"># Ensure no path traversal</span>
+<span class="kw">case</span> <span class="s">"$FILE_PATH"</span> <span class="kw">in</span> *../*) exit 1 ;; <span class="kw">esac</span></code></pre>
+
+      <!-- security checklist -->
+      <div class="checklist" data-reveal>
+        <h3>Security checklist before publishing</h3>
+        <ul>
+          <li>No hardcoded secrets anywhere</li>
+          <li>All hook shell commands use quoted variables</li>
+          <li>MCP servers pin dependency versions</li>
+          <li>Agent definitions have explicit tool restrictions</li>
+          <li><code>claude plugin validate</code> passes with no warnings</li>
+          <li>README documents all required environment variables</li>
+          <li>Tested in a sandboxed container or VM</li>
+          <li>No unnecessary network access</li>
+          <li>Least privilege applied to every component</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ 8 · WORKFLOWS ═══════════════════ -->
+    <section class="chapter" id="s8" data-section="s8">
+      <div class="chapter__head" data-reveal>
+        <span class="chapter__num">08</span>
+        <div>
+          <h2>Designing for repetitive workflows</h2>
+          <p class="chapter__sub">Where plugins deliver the most leverage — turning high-friction, multi-step work into one command.</p>
+        </div>
+      </div>
+
+      <!-- before / after -->
+      <div class="beforeafter" data-reveal>
+        <div class="ba ba--before">
+          <header><span>without a plugin</span><b>~20 min / PR</b></header>
+          <ol>
+            <li>Open PR, copy diff into chat</li>
+            <li>Type “review for security”</li>
+            <li>Receive findings</li>
+            <li>Manually create GitHub comments</li>
+            <li>Update the Jira ticket</li>
+            <li>Run the linter by hand</li>
+            <li>Fix issues · repeat every PR</li>
+          </ol>
+        </div>
+        <div class="ba__arrow" aria-hidden="true">→</div>
+        <div class="ba ba--after">
+          <header><span>with a plugin</span><b>~2 min · zero copy-paste</b></header>
+          <code class="ba__cmd">/pr-tools:full-review PR-456</code>
+          <ul>
+            <li>fetches the diff via GitHub MCP</li>
+            <li><i>security-reviewer</i> agent analyzes it</li>
+            <li>PostToolUse hook runs the linter</li>
+            <li>GitHub MCP posts review comments</li>
+            <li>Jira MCP updates ticket status</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- four patterns -->
+      <h3 class="block-title" data-reveal>The four automation patterns for skills</h3>
+      <div class="patterns">
+        <article class="pattern" data-reveal style="--d:0">
+          <span class="pattern__n">P1</span>
+          <h4>Context loader</h4>
+          <p>Primes Claude with everything it needs at the start. No action — just context injection.</p>
+        </article>
+        <article class="pattern" data-reveal style="--d:1">
+          <span class="pattern__n">P2</span>
+          <h4>Workflow executor</h4>
+          <p>Runs a multi-step process in order — fetch, analyze, act, report — and stops if a step fails.</p>
+        </article>
+        <article class="pattern" data-reveal style="--d:2">
+          <span class="pattern__n">P3</span>
+          <h4>State-aware operator</h4>
+          <p>Checks external state via MCP tools and acts conditionally — classify a ticket, then branch.</p>
+        </article>
+        <article class="pattern" data-reveal style="--d:3">
+          <span class="pattern__n">P4</span>
+          <h4>Feedback loop</h4>
+          <p>A skill paired with hooks for continuous improvement — write test, run, implement, verify, refactor.</p>
+        </article>
+      </div>
+
+      <div class="glue" data-reveal>
+        <h4>Hooks are the workflow glue</h4>
+        <p>The key insight: <b>hooks return their stdout to Claude</b>. A TypeScript error in the hook output is read by Claude, which then fixes the error — all without user intervention. Design hooks to auto-correct, auto-verify, auto-document, and auto-notify.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ 9 · ARCHITECTURE ═══════════════════ -->
+    <section class="chapter" id="s9" data-section="s9">
+      <div class="chapter__head" data-reveal>
+        <span class="chapter__num">09</span>
+        <div>
+          <h2>Architecture best practices</h2>
+          <p class="chapter__sub">Lessons from building production-grade plugins. Treat plugin development like production code.</p>
+        </div>
+      </div>
+
+      <div class="principles">
+        <article data-reveal style="--d:0"><span>9.1</span><h4>Design for observability</h4><p>Write audit logs from hooks. Add a <code>:status</code> skill reporting MCP health and recent hook activity.</p></article>
+        <article data-reveal style="--d:1"><span>9.2</span><h4>Fail gracefully &amp; loudly</h4><p>Missing dependency? Surface it on stderr with a fix, don’t silently degrade. Give skills explicit fallbacks.</p></article>
+        <article data-reveal style="--d:2"><span>9.3</span><h4>Progressive disclosure</h4><p>Core instructions in <code>SKILL.md</code> (100–200 lines); deep detail in a <code>reference.md</code> loaded on demand.</p></article>
+        <article data-reveal style="--d:3"><span>9.4</span><h4>Idempotency</h4><p>Safe to run twice. Ask: “What happens if this runs twice on the same input?” The answer: nothing bad.</p></article>
+        <article data-reveal style="--d:4"><span>9.5</span><h4>One plugin, one domain</h4><p>Resist the Swiss-army knife. Three focused plugins beat one that does everything.</p></article>
+        <article data-reveal style="--d:5"><span>9.6</span><h4>Namespace everything</h4><p>Plugin → skills → MCP servers → agents all share a coherent namespace.</p></article>
+        <article data-reveal style="--d:6"><span>9.7</span><h4>Version &amp; changelog discipline</h4><p>Bump version, write a changelog entry, document migrations for breaking changes.</p></article>
+        <article data-reveal style="--d:7"><span>9.8</span><h4>Test matrix</h4><p>Clean install, upgrade, missing deps, co-installed plugins, concurrent invocations, local override.</p></article>
+        <article data-reveal style="--d:8"><span>9.9</span><h4>Document the why</h4><p>The problem solved, what changes in Claude’s behavior, required setup, known limitations.</p></article>
+        <article data-reveal style="--d:9"><span>9.10</span><h4>Treat it like production</h4><p>Git from day one, tested hook scripts, CI validation, tagged releases, security review before publish.</p></article>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ 10 · GOING BEYOND ═══════════════════ -->
+    <section class="chapter chapter--beyond" id="s10" data-section="s10">
+      <div class="chapter__head" data-reveal>
+        <span class="chapter__num">10</span>
+        <div>
+          <h2>Going beyond</h2>
+          <p class="chapter__sub">What the internet doesn’t tell you — the things you actually need to build plugins that work at scale.</p>
+        </div>
+      </div>
+
+      <div class="beyond">
+        <article class="beyond__feature" data-reveal>
+          <span class="beyond__tag">10.1 · the big one</span>
+          <h3>The description is your most important code</h3>
+          <p>Claude’s decision to use a skill is <em>entirely</em> based on its description. Test it: describe a scenario without invoking the skill explicitly — does Claude reach for it? If not, rewrite the description. Include <b>negative constraints</b> too: what the skill is <em>not</em> for prevents over-application.</p>
+        </article>
+        <article data-reveal style="--d:0"><b>10.3</b><h4>The hook → Claude feedback loop</h4><p>Underused. Hooks that return <em>rich, structured</em> context (JSON lint results) tell Claude exactly what to fix and where.</p></article>
+        <article data-reveal style="--d:1"><b>10.4</b><h4>MCP descriptions = routing table</h4><p>Every tool description is Claude’s decision criterion for calling it. Write them with skill-level care.</p></article>
+        <article data-reveal style="--d:2"><b>10.5</b><h4>Agents vs. skills</h4><p>Skill = linear, fast, no tool isolation. Agent = strict isolation, a distinct persona, deep focus — with spawn overhead.</p></article>
+        <article data-reveal style="--d:3"><b>10.6</b><h4>Monitors = background intelligence</h4><p>Any line of stdout can be a monitor — git commits, API polling, fswatch, slow-query logs. Sessions become proactive.</p></article>
+        <article data-reveal style="--d:4"><b>10.7</b><h4>settings.json agent activation</h4><p>The most underused feature: a default agent gives Claude Code organizational identity for the session.</p></article>
+        <article data-reveal style="--d:5"><b>10.8</b><h4>Private team marketplace</h4><p>A <code>marketplace.json</code> in a private git repo: centralized, version-pinned, audited plugins with a review gate.</p></article>
+        <article data-reveal style="--d:6"><b>10.10</b><h4>A plugin that teaches itself</h4><p>A skill that reads its own files, checks them against the codebase, and proposes updates — a living knowledge base.</p></article>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ QUICK REFERENCE ═══════════════════ -->
+    <section class="reference" id="ref">
+      <div class="chapter__head" data-reveal>
+        <span class="chapter__num">＋</span>
+        <div>
+          <h2>Quick reference</h2>
+          <p class="chapter__sub">The cheat sheet — locations, events, commands.</p>
+        </div>
+      </div>
+
+      <div class="refgrid">
+        <article class="refcard" data-reveal>
+          <h3>File locations</h3>
+          <dl>
+            <div><dt><code>.claude-plugin/plugin.json</code></dt><dd>Manifest</dd></div>
+            <div><dt><code>skills/&lt;name&gt;/SKILL.md</code></dt><dd>Skill definition</dd></div>
+            <div><dt><code>agents/&lt;name&gt;.md</code></dt><dd>Agent definition</dd></div>
+            <div><dt><code>hooks/hooks.json</code></dt><dd>Hook handlers</dd></div>
+            <div><dt><code>.mcp.json</code></dt><dd>MCP server configs</dd></div>
+            <div><dt><code>.lsp.json</code></dt><dd>LSP server configs</dd></div>
+            <div><dt><code>monitors/monitors.json</code></dt><dd>Background monitors</dd></div>
+            <div><dt><code>settings.json</code></dt><dd>Default settings</dd></div>
+            <div><dt><code>bin/</code></dt><dd>Executables → PATH</dd></div>
+          </dl>
+        </article>
+
+        <article class="refcard" data-reveal>
+          <h3>Hook events</h3>
+          <dl>
+            <div><dt><code>PreToolUse</code></dt><dd>Before any tool executes</dd></div>
+            <div><dt><code>PostToolUse</code></dt><dd>After any tool executes</dd></div>
+            <div><dt><code>ConfigChange</code></dt><dd>Config is mutated</dd></div>
+            <div><dt><code>SessionStart</code></dt><dd>Session begins</dd></div>
+            <div><dt><code>SessionEnd</code></dt><dd>Session ends</dd></div>
+          </dl>
+        </article>
+
+        <article class="refcard refcard--term" data-reveal>
+          <h3>Development commands</h3>
+          <pre><code><span class="cmt"># scaffold</span>
+claude plugin init my-plugin
+<span class="cmt"># load locally</span>
+claude --plugin-dir ./my-plugin
+<span class="cmt"># load from URL</span>
+claude --plugin-url …/my-plugin.zip
+<span class="cmt"># validate before publish</span>
+claude plugin validate
+<span class="cmt"># reload during dev</span>
+/reload-plugins</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ FOOTER ═══════════════════ -->
+    <footer class="foot">
+      <div class="foot__top">
+        <div class="brand">
+          <span class="brand__glyph" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+          <span class="brand__text"><b>claude·plugins</b><small>the definitive guide</small></span>
+        </div>
+        <p>Built from official documentation, real-world patterns, and security research. If Claude Code is the operating system, plugins are how you ship the applications.</p>
+      </div>
+      <div class="foot__links">
+        <a href="https://code.claude.com/docs/en/plugins" target="_blank" rel="noopener">Plugin creation guide ↗</a>
+        <a href="https://code.claude.com/docs/en/plugins-reference" target="_blank" rel="noopener">Plugins reference ↗</a>
+        <a href="https://github.com/anthropics/claude-code/blob/main/plugins/README.md" target="_blank" rel="noopener">Claude Code plugins README ↗</a>
+      </div>
+      <p class="foot__legal">A visual field guide · for educational use · concepts sourced from the Claude Code Plugin Guide.</p>
+    </footer>
+
+  </main>
+</body>
+</html>
