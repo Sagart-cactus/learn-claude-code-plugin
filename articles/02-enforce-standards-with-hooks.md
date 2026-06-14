@@ -62,4 +62,4 @@ A hook that enforces your standards is a gift. A careless one is a remote code e
 
 **This is one chapter of a much larger field guide.** The full interactive version covers the entire hook lifecycle, the four automation patterns, and how to compose skills and hooks into one-command workflows, all with animated diagrams.
 
-**Explore the complete visual guide → [The Definitive Guide to Claude Code Plugins](https://github.com/Sagart-cactus/learn-claude-code-plugin)**
+**Explore the complete visual guide → [The Definitive Guide to Claude Code Plugins](https://sagart-cactus.github.io/learn-claude-code-plugin/)**

@@ -67,4 +67,4 @@ The work you repeat is the work worth automating.
 
 **This is one chapter of a much larger field guide.** The full interactive version covers all four automation patterns, stateful workflows with monitors, and how to compose skills into production-grade pipelines, all with animated diagrams.
 
-**Explore the complete visual guide → [The Definitive Guide to Claude Code Plugins](https://github.com/Sagart-cactus/learn-claude-code-plugin)**
+**Explore the complete visual guide → [The Definitive Guide to Claude Code Plugins](https://sagart-cactus.github.io/learn-claude-code-plugin/)**

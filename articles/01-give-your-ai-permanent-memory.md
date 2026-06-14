@@ -51,4 +51,4 @@ That is the difference between an assistant that needs a briefing every morning 
 
 **This is one chapter of a much larger field guide.** The full interactive version covers all nine building blocks, the security model, workflow automation, and the production-grade architecture patterns, all drawn out with animated diagrams.
 
-**Explore the complete visual guide → [The Definitive Guide to Claude Code Plugins](https://github.com/Sagart-cactus/learn-claude-code-plugin)**
+**Explore the complete visual guide → [The Definitive Guide to Claude Code Plugins](https://sagart-cactus.github.io/learn-claude-code-plugin/)**
